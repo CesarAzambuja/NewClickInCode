@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClickInCode | Inteligência em Dados para Decisões Estratégicas</title>
+  <meta name="description" content="Transformamos dados brutos em insights estratégicos. Análise de dados, visualização, tratamento e governança para impulsionar seu negócio.">
+  <meta name="keywords" content="análise de dados, tratamento de dados, business intelligence, dashboard, data analytics, governança de dados">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            background: '#12171d',
+            card: '#1b2229',
+            foreground: '#ffffff',
+            muted: '#7a8b99',
+            border: '#2a3640',
+            primary: '#00f2ff',
+            secondary: '#3ef08b',
+            accent: '#a2ff00',
+          },
+        },
+      },
+    }
+  </script>
+
+   <!-- WhatsApp Floating Button -->
+  <a id="whatsappFab" href="https://wa.me/5513981768332" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20.52 3.48a11.94 11.94 0 10-16.9 16.9L2 22l1.66-1.1A11.94 11.94 0 0020.52 3.48z" fill="#25D366"/>
+      <path d="M17.7 14.3c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.12.3-.32.45-.48.15-.16.2-.28.3-.47.1-.19.05-.35-.02-.5-.07-.15-.68-1.64-.93-2.25-.24-.59-.48-.51-.66-.52l-.56-.01c-.19 0-.5.07-.76.35-.26.28-.99.97-.99 2.37s1.02 2.75 1.16 2.93c.15.19 1.98 3.02 4.8 4.24 1.06.46 1.89.74 2.54.95.96.3 1.84.26 2.53.16.77-.11 1.77-.72 2.02-1.42.24-.69.24-1.28.17-1.42-.07-.15-.27-.23-.57-.38z" fill="#fff"/>
+    </svg>
+  </a>
+  
+
+</head>
+<body class="antialiased">
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="section-container">
+      <nav class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #00f2ff, #3ef08b);">
+            <span class="text-background font-bold text-lg" style="color: #12171d;"><i data-lucide="database" class="w-8 text-white"></i></span>
+          </div>
+          <span class="text-xl font-bold tracking-tight">
+            <span class="text-primary">Click</span><span class="text-foreground">InCode</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex items-center gap-8">
+          <li><a href="#inicio" class="text-muted hover:text-primary transition-colors text-sm font-medium">Início</a></li>
+          <li><a href="#servicos" class="text-muted hover:text-primary transition-colors text-sm font-medium">Serviços</a></li>
+          <li><a href="#sobre" class="text-muted hover:text-primary transition-colors text-sm font-medium">Sobre</a></li>
+          <li><a href="#diferenciais" class="text-muted hover:text-primary transition-colors text-sm font-medium">Diferenciais</a></li>
+          <li><a href="#contato" class="text-muted hover:text-primary transition-colors text-sm font-medium">Contato</a></li>
+        </ul>
+
+        <!-- CTA Button -->
+        <a href="https://wa.me/5513981768332" target="_blank" rel="noopener noreferrer" class="hidden md:block btn-gradient text-sm">
+          Fale Conosco
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="md:hidden text-foreground p-2" aria-label="Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </nav>
+
+      <!-- Mobile Navigation -->
+      <div id="mobileMenu" class="mobile-menu md:hidden rounded-xl p-6 mb-4 border" style="background: #1b2229; border-color: rgba(42, 54, 64, 0.5);">
+        <ul class="flex flex-col gap-4">
+          <li><a href="#inicio" class="text-muted hover:text-primary transition-colors text-base font-medium block py-2">Início</a></li>
+          <li><a href="#servicos" class="text-muted hover:text-primary transition-colors text-base font-medium block py-2">Serviços</a></li>
+          <li><a href="#sobre" class="text-muted hover:text-primary transition-colors text-base font-medium block py-2">Sobre</a></li>
+          <li><a href="#diferenciais" class="text-muted hover:text-primary transition-colors text-base font-medium block py-2">Diferenciais</a></li>
+          <li><a href="#contato" class="text-muted hover:text-primary transition-colors text-base font-medium block py-2">Contato</a></li>
+          <li class="pt-4 border-t" style="border-color: rgba(42, 54, 64, 0.5);">
+            <a href="https://wa.me/5513981768332" target="_blank" rel="noopener noreferrer" class="btn-gradient text-sm text-center block">
+              Fale Conosco
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <!-- Grid Background -->
+      <div class="absolute inset-0 grid-bg opacity-50"></div>
+      
+      <!-- Gradient Overlay -->
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at top, rgba(0, 242, 255, 0.08) 0%, transparent 50%);"></div>
+
+      <div class="section-container relative z-10 py-20">
+        <div class="max-w-4xl">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8" style="background: #1b2229; border-color: rgba(0, 242, 255, 0.3);">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span class="data-label text-primary">Inteligência em Dados</span>
+          </div>
+
+          <!-- Main Heading -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Transformamos <span class="text-primary text-glow-cyan">Dados</span> em 
+            <span class="text-secondary text-glow-emerald">Decisões Estratégicas</span>
+          </h1>
+
+          <!-- Subheading -->
+          <p class="text-lg md:text-xl text-muted max-w-2xl mb-10">
+            Auxiliamos você, sua marca ou sua empresa a tomar decisões de amplo impacto que alcançam seus objetivos estratégicos através de análises avançadas e tratamento inteligente de dados.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 mb-16">
+            <a href="https://wa.me/5513981768332" target="_blank" rel="noopener noreferrer" class="btn-gradient group">
+              Descubra Insights
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="#servicos" class="btn-outline">
+              Conheça Nossos Serviços
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center border" style="background: rgba(0, 242, 255, 0.1); border-color: rgba(0, 242, 255, 0.3);">
+                <i data-lucide="bar-chart-3" class="w-6 h-6 text-primary"></i>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-foreground">237+</p>
+                <p class="text-sm text-muted">Projetos Entregues</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center border" style="background: rgba(62, 240, 139, 0.1); border-color: rgba(62, 240, 139, 0.3);">
+                <i data-lucide="trending-up" class="w-6 h-6 text-secondary"></i>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-foreground">98%</p>
+                <p class="text-sm text-muted">Taxa de Satisfação</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center border" style="background: rgba(162, 255, 0, 0.1); border-color: rgba(162, 255, 0, 0.3);">
+                <i data-lucide="database" class="w-6 h-6 text-accent"></i>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-foreground">6TB+</p>
+                <p class="text-sm text-muted">Dados Processados</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-24 relative">
+      <div class="absolute inset-0 grid-bg opacity-30"></div>
+      
+      <div class="section-container relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <span class="data-label text-primary mb-4 block">Nossos Serviços</span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Soluções Completas em <span class="text-primary">Dados</span>
+          </h2>
+          <p class="text-muted max-w-2xl mx-auto">
+            Oferecemos uma gama completa de serviços para transformar seus dados em vantagem competitiva no mercado.
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Service 1 -->
+          <div class="card-data">
+            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(0, 242, 255, 0.1); border-color: rgba(0, 242, 255, 0.3);">
+              <i data-lucide="bar-chart-3" class="w-7 h-7 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-foreground">Análise de Dados</h3>
+            <p class="text-muted text-sm leading-relaxed">Extraímos insights estratégicos dos seus dados para transformar informações complexas em decisões inteligentes, impulsionando resultados e vantagem competitiva.</p>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="card-data">
+            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(62, 240, 139, 0.1); border-color: rgba(62, 240, 139, 0.3);">
+              <i data-lucide="pie-chart" class="w-7 h-7 text-secondary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-foreground">Business Inteligence (BI)</h3>
+            <p class="text-muted text-sm leading-relaxed">Desenvolvemos dashboards interativos, relatórios personalizados e indicadores de performance (KPIs) alinhados aos objetivos da sua empresa, permitindo uma visão completa dos resultados. Com BI, você ganha mais controle.</p>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="card-data">
+            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(162, 255, 0, 0.1); border-color: rgba(162, 255, 0, 0.3);">
+              <i data-lucide="trending-up" class="w-7 h-7 text-accent"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-foreground">Análise Preditiva</h3>
+            <p class="text-muted text-sm leading-relaxed">Modelos preditivos avançados que antecipam tendências e comportamentos futuros do mercado.</p>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="card-data">
+            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(0, 242, 255, 0.1); border-color: rgba(0, 242, 255, 0.3);">
+              <i data-lucide="database" class="w-7 h-7 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-foreground">Tratamento de Dados</h3>
+            <p class="text-muted text-sm leading-relaxed">Limpeza, organização e estruturação de dados para garantir qualidade e consistência nas análises.</p>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="card-data">
+            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(62, 240, 139, 0.1); border-color: rgba(62, 240, 139, 0.3);">
+              <i data-lucide="cpu" class="w-7 h-7 text-secondary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-foreground">Automação de Processos</h3>
+            <p class="text-muted text-sm leading-relaxed">Automatizamos fluxos de coleta, processamento e distribuição de dados, aumentando eficiência operacional.</p>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="card-data">
+            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(162, 255, 0, 0.1); border-color: rgba(162, 255, 0, 0.3);">
+              <i data-lucide="shield-check" class="w-7 h-7 text-accent"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-foreground">Governança de Dados</h3>
+            <p class="text-muted text-sm leading-relaxed">Políticas e práticas que garantem segurança, privacidade e conformidade regulatória dos seus dados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-24" style="background: rgba(27, 34, 41, 0.5);">
+      <div class="section-container">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Left Content -->
+          <div>
+            <span class="data-label text-secondary mb-4 block">Sobre Nós</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Visualize o <span class="text-secondary text-glow-emerald">Futuro</span> Através dos Dados
+            </h2>
+            <p class="text-muted mb-8 leading-relaxed">
+              Somos uma empresa especializada em transformar dados brutos em insights estratégicos. Com tecnologia de ponta e metodologias comprovadas, ajudamos organizações a descobrir padrões ocultos, otimizar operações e impulsionar o crescimento sustentável.
+            </p>
+
+            <!-- Checklist -->
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-secondary flex-shrink-0"></i>
+                <span class="text-foreground">Metodologias baseadas em ciência de dados</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-secondary flex-shrink-0"></i>
+                <span class="text-foreground">Dashboards interativos em tempo real</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-secondary flex-shrink-0"></i>
+                <span class="text-foreground">Suporte contínuo e consultoria especializada</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-secondary flex-shrink-0"></i>
+                <span class="text-foreground">Integração com suas ferramentas existentes</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right Content -->
+          <div class="space-y-6">
+            <!-- Feature Cards -->
+            <div class="card-data flex items-start gap-5">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 border" style="background: rgba(62, 240, 139, 0.1); border-color: rgba(62, 240, 139, 0.3);">
+                <i data-lucide="zap" class="w-6 h-6 text-secondary"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-foreground">Agilidade & Precisão</h3>
+                <p class="text-muted text-sm">Processamento rápido para decisões ágeis sem comprometer a qualidade.</p>
+              </div>
+            </div>
+
+            <div class="card-data flex items-start gap-5">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 border" style="background: rgba(62, 240, 139, 0.1); border-color: rgba(62, 240, 139, 0.3);">
+                <i data-lucide="target" class="w-6 h-6 text-secondary"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-foreground">Foco em Resultados</h3>
+                <p class="text-muted text-sm">Cada análise é direcionada para gerar impacto real no seu negócio.</p>
+              </div>
+            </div>
+
+            <div class="card-data flex items-start gap-5">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 border" style="background: rgba(62, 240, 139, 0.1); border-color: rgba(62, 240, 139, 0.3);">
+                <i data-lucide="users" class="w-6 h-6 text-secondary"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-foreground">Equipe Especializada</h3>
+                <p class="text-muted text-sm">Profissionais experientes em ciência de dados e analytics.</p>
+              </div>
+            </div>
+
+            <!-- Chart Mock -->
+            <div class="card-data mt-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="data-label">Performance Analytics</span>
+                <span class="text-secondary text-sm font-medium">+27%</span>
+              </div>
+              <div class="flex items-end gap-2 h-20" id="chartBars">
+                <!-- Bars will be generated by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Differentials Section -->
+    <section id="diferenciais" class="py-24 relative overflow-hidden">
+      <!-- Background Blurs -->
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style="background: rgba(0, 242, 255, 0.05);"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl" style="background: rgba(62, 240, 139, 0.05);"></div>
+
+      <div class="section-container relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <span class="data-label text-accent mb-4 block">Por Que Nos Escolher</span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Nossos <span class="text-accent">Diferenciais</span>
+          </h2>
+          <p class="text-muted max-w-2xl mx-auto">
+            Combinamos expertise técnica com visão estratégica para entregar resultados que realmente fazem diferença.
+          </p>
+        </div>
+
+        <!-- Differentials Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Differential 1 -->
+          <div class="card-data relative overflow-hidden">
+            <span class="absolute top-6 right-6 text-6xl font-bold" style="color: rgba(0, 242, 255, 0.1);">01</span>
+            <div class="relative z-10">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(162, 255, 0, 0.1); border-color: rgba(162, 255, 0, 0.3);">
+                <i data-lucide="lightbulb" class="w-7 h-7 text-accent"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-foreground">Inovação Contínua</h3>
+              <p class="text-muted text-sm leading-relaxed">Utilizamos as tecnologias mais recentes em Machine Learning e IA para entregar soluções de ponta.</p>
+            </div>
+          </div>
+
+          <!-- Differential 2 -->
+          <div class="card-data relative overflow-hidden">
+            <span class="absolute top-6 right-6 text-6xl font-bold" style="color: rgba(0, 242, 255, 0.1);">02</span>
+            <div class="relative z-10">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(162, 255, 0, 0.1); border-color: rgba(162, 255, 0, 0.3);">
+                <i data-lucide="clock" class="w-7 h-7 text-accent"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-foreground">Entrega Ágil</h3>
+              <p class="text-muted text-sm leading-relaxed">Metodologias ágeis que garantem entregas rápidas sem comprometer a qualidade dos resultados.</p>
+            </div>
+          </div>
+
+          <!-- Differential 3 -->
+          <div class="card-data relative overflow-hidden">
+            <span class="absolute top-6 right-6 text-6xl font-bold" style="color: rgba(0, 242, 255, 0.1);">03</span>
+            <div class="relative z-10">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(162, 255, 0, 0.1); border-color: rgba(162, 255, 0, 0.3);">
+                <i data-lucide="shield" class="w-7 h-7 text-accent"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-foreground">Segurança Total</h3>
+              <p class="text-muted text-sm leading-relaxed">Seus dados são tratados com os mais altos padrões de segurança e conformidade LGPD.</p>
+            </div>
+          </div>
+
+          <!-- Differential 4 -->
+          <div class="card-data relative overflow-hidden">
+            <span class="absolute top-6 right-6 text-6xl font-bold" style="color: rgba(0, 242, 255, 0.1);">04</span>
+            <div class="relative z-10">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 border" style="background: rgba(162, 255, 0, 0.1); border-color: rgba(162, 255, 0, 0.3);">
+                <i data-lucide="headphones" class="w-7 h-7 text-accent"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-foreground">Suporte Dedicado</h3>
+              <p class="text-muted text-sm leading-relaxed">Equipe especializada disponível para garantir o sucesso contínuo dos seus projetos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section id="contato" class="py-24 relative" style="background: rgba(27, 34, 41, 0.5);">
+      <!-- Decorative Element -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none" style="background: rgba(0, 242, 255, 0.05);"></div>
+
+      <div class="section-container relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Left Content -->
+          <div>
+            <span class="data-label text-primary mb-4 block"><i data-lucide="coffee"></i>Vamos Conversar</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Pronto para <span class="text-primary text-glow-cyan">Transformar</span> Seus Dados?
+            </h2>
+            <p class="text-muted mb-8 leading-relaxed">
+              Entre em contato conosco e descubra como podemos ajudar sua empresa a tomar decisões mais inteligentes baseadas em dados. Nossa equipe está pronta para entender suas necessidades e propor soluções personalizadas.
+            </p>
+
+            <!-- WhatsApp CTA -->
+            <a href="https://wa.me/5513981768332?text=Olá! Gostaria de saber mais sobre os serviços de análise de dados." target="_blank" rel="noopener noreferrer" class="btn-gradient text-lg mb-8 group">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              Fale pelo WhatsApp
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <!-- Contact Info -->
+            <div class="space-y-4 mt-8">
+              <a href="tel:+5513981768332" class="flex items-center gap-4 group">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-colors" style="background: #1b2229;">
+                  <i data-lucide="phone" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+                </div>
+                <div>
+                  <p class="data-label">Telefone</p>
+                  <p class="text-foreground group-hover:text-primary transition-colors">+55 (13) 98176-8332</p>
+                </div>
+              </a>
+
+              <a href="mailto:contato@clickincode.com.br" class="flex items-center gap-4 group">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-colors" style="background: #1b2229;">
+                  <i data-lucide="mail" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+                </div>
+                <div>
+                  <p class="data-label">E-mail</p>
+                  <p class="text-foreground group-hover:text-primary transition-colors">contato@clickincode.com.br</p>
+                </div>
+              </a>
+
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: #1b2229;">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-muted"></i>
+                </div>
+                <div>
+                  <p class="data-label">Localização</p>
+                  <p class="text-foreground">São Paulo, SP - Brasil</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content -->
+          <div class="card-data text-center p-10">
+            <div class="w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center animate-glow" style="background: linear-gradient(135deg, #00f2ff, #3ef08b);">
+              <i data-lucide="message-circle" class="w-10 h-10" style="color: #12171d;"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-foreground">Atendimento Personalizado</h3>
+            <p class="text-muted mb-8">
+              Resposta rápida e consultoria especializada para entender suas necessidades e oferecer as melhores soluções em dados.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="https://wa.me/5513981768332" target="_blank" rel="noopener noreferrer" class="btn-gradient">
+                WhatsApp
+              </a>
+              <a href="mailto:contato@clickincode.com.br" class="btn-outline">
+                E-mail
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t" style="border-color: rgba(42, 54, 64, 0.5);">
+    <div class="section-container">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #00f2ff, #3ef08b);">
+            <span class="text-background font-bold text-lg" style="color: #12171d;"><i data-lucide="database" class="w-8 text-white"></i></span>
+          </div>
+          <span class="text-xl font-bold tracking-tight">
+            <span class="text-primary">Click</span><span class="text-foreground">InCode</span>
+          </span>
+        </a>
+
+        <!-- Social Links -->
+        <div class="flex items-center gap-4">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-colors group" style="background: #1b2229;" aria-label="LinkedIn">
+            <i data-lucide="linkedin" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-colors group" style="background: #1b2229;" aria-label="Instagram">
+            <i data-lucide="instagram" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-colors group" style="background: #1b2229;" aria-label="Twitter">
+            <i data-lucide="twitter" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-muted text-sm">
+          © <span id="currentYear"></span> ClicInCode. Todos os direitos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Set current year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let isMenuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      mobileMenu.classList.toggle('active', isMenuOpen);
+      menuBtn.innerHTML = isMenuOpen 
+        ? '<i data-lucide="x" class="w-6 h-6"></i>' 
+        : '<i data-lucide="menu" class="w-6 h-6"></i>';
+      lucide.createIcons();
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        isMenuOpen = false;
+        mobileMenu.classList.remove('active');
+        menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+        lucide.createIcons();
+      });
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.style.backgroundColor = 'rgba(18, 23, 29, 0.95)';
+        header.style.backdropFilter = 'blur(10px)';
+        header.style.borderBottom = '1px solid rgba(42, 54, 64, 0.5)';
+      } else {
+        header.style.backgroundColor = 'transparent';
+        header.style.backdropFilter = 'none';
+        header.style.borderBottom = 'none';
+      }
+    });
+
+    // Generate chart bars
+    const chartBars = document.getElementById('chartBars');
+    const heights = [40, 65, 45, 80, 55, 90, 70, 85, 60, 95];
+    heights.forEach(height => {
+      const bar = document.createElement('div');
+      bar.className = 'flex-1 rounded-t transition-all duration-300';
+      bar.style.height = height + '%';
+      bar.style.background = 'linear-gradient(to top, rgba(0, 242, 255, 0.4), rgba(62, 240, 139, 0.8))';
+      bar.addEventListener('mouseenter', () => {
+        bar.style.background = 'linear-gradient(to top, rgba(0, 242, 255, 0.6), #3ef08b)';
+      });
+      bar.addEventListener('mouseleave', () => {
+        bar.style.background = 'linear-gradient(to top, rgba(0, 242, 255, 0.4), rgba(62, 240, 139, 0.8))';
+      });
+      chartBars.appendChild(bar);
+    });
+  </script>
+
+</body>
+</html>

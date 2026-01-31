@@ -1,0 +1,160 @@
+  
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #12171d;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    #inicio{
+    background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url("/image/hero-data-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+    /* Neon Glow Effects */
+    .text-glow-cyan {
+      text-shadow: 0 0 10px rgba(0, 242, 255, 0.5), 0 0 20px rgba(0, 242, 255, 0.3);
+    }
+    
+    .text-glow-emerald {
+      text-shadow: 0 0 10px rgba(62, 240, 139, 0.5), 0 0 20px rgba(62, 240, 139, 0.3);
+    }
+    
+    /* Card Hover Effect */
+    .card-data {
+      background-color: #1b2229;
+      border: 1px solid rgba(42, 54, 64, 0.5);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-data:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 242, 255, 0.5);
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+    }
+    
+    /* Gradient Button */
+    .btn-gradient {
+      background: linear-gradient(135deg, #00f2ff, #3ef08b);
+      color: #12171d;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      transition: opacity 0.3s ease, box-shadow 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-gradient:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 25px rgba(62, 240, 139, 0.4);
+    }
+    
+    /* Outline Button */
+    .btn-outline {
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: transparent;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(0, 242, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+    }
+    
+    /* Grid Background */
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    
+    /* Glow Animation */
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(0, 242, 255, 0.5); }
+    }
+    
+    .animate-glow {
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+    
+    /* Float Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Data Label */
+    .data-label {
+      color: #7a8b99;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+    
+    /* Section Container */
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    @media (min-width: 1024px) {
+      .section-container {
+        padding: 0 32px;
+      }
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-fab{position:fixed;right:20px;bottom:20px;z-index:70;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:9999px;background:#25d366;box-shadow:0 8px 20px rgba(2,6,10,0.6);color:#fff;text-decoration:none;transition:transform .2s ease,opacity .2s ease}
+    .whatsapp-fab svg{display:block}
+    .whatsapp-fab:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(2,6,10,0.7)}
+    .whatsapp-fab.small{width:48px;height:48px;right:16px;bottom:16px}
+    .whatsapp-hidden{transform:translateY(120px);opacity:0;pointer-events:none}
+
+    @media (min-width: 768px){
+      .whatsapp-fab{right:28px;bottom:28px}
+    }
